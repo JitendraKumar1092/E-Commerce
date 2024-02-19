@@ -22,15 +22,21 @@ app.use((req, res, next) => {
 
 
 
-app.use("/api/products/:category", async (req, res) => {
-  const category = req.params.category;
-console.log("requested data of " + category + "category");
+app.use("/api/products/:query", async (req, res) => {
+  const query = req.params.query;
+console.log("requested data of " + query + "query");
 try {
-  const { category } = req.params; 
-  const products = await Product.find({ category });
+ 
+  const products = await Product.find({
+    $or: [
+      { name: { $regex: query, $options: "i" } },
+      { category: { $regex: query, $options: "i" } },
+      { description: { $regex: query, $options: "i" } }
+    ]
+  });
 
   if (products.length === 0) {
-    return res.status(404).json({ success: false, message: 'No products found for the specified category.' });
+    return res.status(404).json({ success: false, message: 'No products found for the specified query.' });
   }
 
   res.status(200).json({ success: true, data: products });
@@ -50,14 +56,14 @@ app.get("/", async (req, res) => {
 
 connectDB(url);
 
-// const startServer = async () => {
-//   try {
-//     app.listen(3000, () => console.log("server has started on port 3000"));
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// startServer();
+const startServer = async () => {
+  try {
+    app.listen(3000, () => console.log("server has started on port 3000"));
+  } catch (err) {
+    console.log(err);
+  }
+};
+startServer();
 export default app;
 
 
