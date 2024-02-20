@@ -31,7 +31,8 @@ try {
     $or: [
       { name: { $regex: query, $options: "i" } },
       { category: { $regex: query, $options: "i" } },
-      { description: { $regex: query, $options: "i" } }
+      { description: { $regex: query, $options: "i" } },
+      { color: { $regex: query, $options: "i" } }
     ]
   });
 
@@ -56,14 +57,14 @@ app.get("/", async (req, res) => {
 
 connectDB(url);
 
-const startServer = async () => {
-  try {
-    app.listen(3000, () => console.log("server has started on port 3000"));
-  } catch (err) {
-    console.log(err);
-  }
-};
-startServer();
+// const startServer = async () => {
+//   try {
+//     app.listen(3000, () => console.log("server has started on port 3000"));
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+// startServer();
 export default app;
 
 
