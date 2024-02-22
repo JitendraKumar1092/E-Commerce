@@ -8,9 +8,6 @@ dotenv.config();
 
 const router = express.Router();
 
-
-
-
 // GET ALL ProductS
 router.get('/' , async (req, res) => {
   try {
