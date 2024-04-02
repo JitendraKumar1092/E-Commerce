@@ -170,7 +170,7 @@ app.post("/api/products", async (req, res) => {
 
     // Construct the query with $or operator
     if (conditions.length > 0) {
-      products = await Product.find({ $and: conditions });
+      products = await Product.find({ $or: conditions });
     } 
 
     if (products.length === 0) {
