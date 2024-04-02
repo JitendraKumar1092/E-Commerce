@@ -191,13 +191,13 @@ app.post("/api/products", async (req, res) => {
 app.use((req, res, next) => {
   res.status(404).render("errorRoute", { message: "Route not found" });
 });
-const startServer = async () => {
-  try {
-    app.listen(3000, () => console.log("server has started on port 3000"));
-  } catch (err) {
-    console.log(err);
-  }
-};
-startServer();
+// const startServer = async () => {
+//   try {
+//     app.listen(3000, () => console.log("server has started on port 3000"));
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+// startServer();
 export default app;
 
