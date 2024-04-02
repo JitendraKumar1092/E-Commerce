@@ -9,7 +9,6 @@ const extractProductDetails = (inputString) => {
         "Scala",
         "Prada",
         "Guess",
-        "Adidas",
         "Arrow",
         "Fruit of the Loom"
     ]; 
